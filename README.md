@@ -2,13 +2,9 @@
 
 # bolbol-engine (minimal)
 
-This project contains a small OpenGL renderer in `opengl/` and a `main.cpp` that opens a GLFW window and draws a rotating triangle.
+this project contains a small OpenGL renderer in `opengl/` and a `main.cpp` that opens a GLFW window and draws a rotating triangle.
 
 MSYS2 + g++ build instructions (Windows)
-
-1. Install MSYS2: https://www.msys2.org/ and open the "MSYS2 MinGW 64-bit" shell.
-
-2. Update packages and install dependencies:
 
 ```powershell
 pacman -Syu
