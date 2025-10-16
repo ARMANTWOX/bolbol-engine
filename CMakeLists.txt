@@ -18,7 +18,16 @@ FetchContent_Declare(
   GIT_TAG        v0.1.36
 )
 
+FetchContent_Declare(
+  glm
+  GIT_REPOSITORY https://github.com/g-truc/glm.git
+  GIT_TAG        0.9.9.8
+)
+
 FetchContent_MakeAvailable(glfw glad)
+
+# Make GLM available (header-only)
+FetchContent_MakeAvailable(glm)
 
 # Build a small static glad library from the fetched source
 add_library(glad_lib STATIC ${glad_SOURCE_DIR}/src/glad.c)
@@ -29,6 +38,11 @@ add_subdirectory(opengl)
 add_executable(bolbol main.cpp)
 target_include_directories(bolbol PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/opengl)
 target_link_libraries(bolbol PRIVATE engine_opengl glfw glad_lib)
+
+if(TARGET glm)
+  # make glm headers available to targets that link engine_opengl
+  target_include_directories(engine_opengl PUBLIC ${glm_SOURCE_DIR})
+endif()
 
 if(WIN32)
   target_link_libraries(bolbol PRIVATE opengl32)
